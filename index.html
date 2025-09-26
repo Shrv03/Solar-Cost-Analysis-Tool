@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Solar Choices: On-Grid, Off-Grid & Net-Metering</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--ink:#0f172a;--muted:#64748b;--pill:#e2e8f0;}
+    html,body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,"Apple Color Emoji","Segoe UI Emoji";}
+    .tab-btn{border-bottom:2px solid transparent}
+    .tab-btn[aria-selected="true"]{color:#0f172a;border-color:#0f172a;font-weight:700}
+    .container-narrow{max-width:1100px}
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800">
+  <!-- Header -->
+  <header class="bg-white border-b border-slate-200">
+    <div class="mx-auto container-narrow px-6 py-6">
+      <h1 class="text-2xl md:text-3xl font-bold">Solar Choices: On-Grid, Off-Grid & Net-Metering</h1>
+      <p class="text-slate-600 mt-1">Understand your options, explore policy trade-offs, and run numbers with an interactive tool.</p>
+    </div>
+  </header>
+
+  <!-- Tabs -->
+  <nav class="mx-auto container-narrow px-6 pt-4">
+    <div id="tabs" class="flex flex-wrap gap-3">
+      <button class="tab-btn px-3 pb-2" data-tab="overview" aria-selected="true">Overview</button>
+      <button class="tab-btn px-3 pb-2" data-tab="net" aria-selected="false">How Net Metering Works</button>
+      <button class="tab-btn px-3 pb-2" data-tab="cases" aria-selected="false">Case Studies</button>
+      <button class="tab-btn px-3 pb-2" data-tab="policy" aria-selected="false">Policy & Tips</button>
+      <button class="tab-btn px-3 pb-2" data-tab="tool" aria-selected="false">Tool</button>
+    </div>
+  </nav>
+
+  <!-- Content -->
+  <main class="mx-auto container-narrow px-6 py-6 space-y-10">
+    <!-- Overview -->
+    <section id="panel-overview" class="space-y-4">
+      <h2 class="text-xl font-semibold">Overview</h2>
+      <p class="text-slate-700">
+        Solar has moved from niche to mainstream as panel costs keep falling and annual U.S. installations rise.
+        Homeowners generally choose between three paths: a <span class="font-semibold">grid-tied</span> system that
+        feeds extra power to the utility, a <span class="font-semibold">net-zero grid-tied</span> system that offsets
+        a year of usage through credits, or a <span class="font-semibold">fully off-grid</span> setup with batteries for
+        independence. Use the tabs to learn the basics, see real-world scenarios, and run your own numbers with the
+        calculator to compare the cost of energy (LCOE), bill impacts, and policy sensitivity.
+      </p>
+
+      <div class="grid md:grid-cols-3 gap-4">
+        <div class="rounded-xl bg-white border border-slate-200 p-4">
+          <h3 class="font-semibold mb-1">Grid-Tied</h3>
+          <p class="text-slate-600 text-sm">Lowest complexity; relies on the utility; can earn credits for exports.</p>
+        </div>
+        <div class="rounded-xl bg-white border border-slate-200 p-4">
+          <h3 class="font-semibold mb-1">Net-Zero (Grid)</h3>
+          <p class="text-slate-600 text-sm">Larger array targets ~100% of annual use; policy terms matter most.</p>
+        </div>
+        <div class="rounded-xl bg-white border border-slate-200 p-4">
+          <h3 class="font-semibold mb-1">Off-Grid</h3>
+          <p class="text-slate-600 text-sm">Highest independence with batteries; higher cost per kWh today.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Net Metering -->
+    <section id="panel-net" class="hidden space-y-4">
+      <h2 class="text-xl font-semibold">How Net Metering Works</h2>
+      <p class="text-slate-700">
+        With net metering, your meter tracks both imports from and exports to the grid. When your panels make more than
+        you use, the excess flows to the grid and you earn credits; when production is low (evening/winter), you draw on
+        those credits. Your yearly bill depends on the balance between import kWh at the <em>buy rate</em> and export kWh
+        at the <em>sell credit</em> rate. Favorable policies make net-zero practical without batteries; reduced export
+        credits shift value toward on-site use or storage.
+      </p>
+      <ol class="list-decimal pl-5 text-slate-700 space-y-1">
+        <li><span class="font-semibold">Energy production:</span> rooftop PV generates for home use first.</li>
+        <li><span class="font-semibold">Grid connection:</span> surplus is exported automatically.</li>
+        <li><span class="font-semibold">Metering & credits:</span> a bi-directional meter tracks imports/exports and assigns credits.</li>
+        <li><span class="font-semibold">Bill offset:</span> credits offset future usage charges.</li>
+        <li><span class="font-semibold">Settlement:</span> some utilities true-up monthly or annually based on their rules.</li>
+      </ol>
+    </section>
+
+    <!-- Case Studies -->
+    <section id="panel-cases" class="hidden space-y-6">
+      <h2 class="text-xl font-semibold">Case Studies (Quick Read)</h2>
+
+      <div class="rounded-2xl bg-white border border-slate-200 p-5">
+        <h3 class="font-semibold">1) Off-Grid Cabin (8 kW + 48 kWh)</h3>
+        <p class="text-slate-700 text-sm">
+          Remote site with two days of storage. Produces ~16,060 kWh/yr vs ~9,125 kWh/yr used; true independence,
+          but higher upfront cost and battery replacements every 10–15 years. Excess summer generation is unused without
+          more storage or flexible loads.
+        </p>
+      </div>
+
+      <div class="rounded-2xl bg-white border border-slate-200 p-5">
+        <h3 class="font-semibold">2) Minimal Grid-Tied (4 kW)</h3>
+        <p class="text-slate-700 text-sm">
+          Cost-conscious home covering ~50% of annual use (~8,030 of 10,950 kWh). Lower entry cost, simple maintenance,
+          ongoing reliance on the grid, and no backup during outages. Clear path to expand later.
+        </p>
+      </div>
+
+      <div class="rounded-2xl bg-white border border-slate-200 p-5">
+        <h3 class="font-semibold">3) Net-Zero Grid-Tied (10 kW)</h3>
+        <p class="text-slate-700 text-sm">
+          Targets ~110% of annual use (~20,075 kWh made; ~9,125 kWh exported). Achieves net-zero annually using credits;
+          no batteries, so no outage backup. Most sensitive to local export rates and policy changes.
+        </p>
+      </div>
+    </section>
+
+    <!-- Policy -->
+    <section id="panel-policy" class="hidden space-y-4">
+      <h2 class="text-xl font-semibold">Policy Landscape & Practical Tips</h2>
+      <p class="text-slate-700">
+        Export credit reductions can change grid-tied economics quickly. If policy is favorable, locking in terms before
+        changes can help. Where export credits are modest, a hybrid approach (small battery for self-use and backup) can
+        reduce exposure and improve resilience. Always compare the value of <em>on-site use</em> vs <em>export</em> at local rates.
+      </p>
+      <div class="grid md:grid-cols-3 gap-4">
+        <div class="rounded-xl bg-white border border-slate-200 p-4">
+          <h3 class="font-semibold mb-1">If Installing Soon</h3>
+          <p class="text-slate-600 text-sm">Check current net-metering rules; consider sizing for self-use; capture incentives while available.</p>
+        </div>
+        <div class="rounded-xl bg-white border border-slate-200 p-4">
+          <h3 class="font-semibold mb-1">If Rules Are Tight</h3>
+          <p class="text-slate-600 text-sm">Explore hybrid (PV + battery) to shift exports into evening use and gain backup power.</p>
+        </div>
+        <div class="rounded-xl bg-white border border-slate-200 p-4">
+          <h3 class="font-semibold mb-1">Budget & Roof Fit</h3>
+          <p class="text-slate-600 text-sm">Minimal grid-tie = lowest entry cost; net-zero needs more roof area; off-grid trades cost for autonomy.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tool -->
+    <section id="panel-tool" class="hidden space-y-4">
+      <h2 class="text-xl font-semibold">Solar Cost & Net-Metering Tool</h2>
+      <p class="text-slate-700">
+        This interactive calculator compares the levelized cost of electricity (LCOE) for on-grid and off-grid systems and
+        estimates net-metering bills. Enter your array size, production, load, and cost assumptions; then test buy/sell
+        rates to see how policy affects your annual bill. Outputs include on-grid and off-grid LCOE, a cost ratio, CAPEX
+        estimates, import/export energy, and your bill or credit.
+        <br />
+        <a href="https://docs.google.com/spreadsheets/d/1jTrXFmLzXCy0TXIiw_XwlHJ2nB2sb2O998to0cD4x3Q/edit?usp=sharing"
+           target="_blank" rel="noopener" class="underline text-sky-700 hover:text-sky-900">
+          View the underlying assumptions sheet →
+        </a>
+        <br />
+        This spreadsheet illustrates the logic behind the tool, helping you see how inputs translate into outputs before you run the calculator.
+        <a href="https://docs.google.com/spreadsheets/d/12FqZ9YDAah15jWPssPiA9imxBu3CvhvGLWp66T1pM1I/edit?usp=sharing"
+           target="_blank" rel="noopener" class="underline text-sky-700 hover:text-sky-900">
+          View the tool working here →
+        </a>
+      </p>
+      
+      <div id="tool-root"></div>
+      <p class="text-xs text-slate-500">Values last updated: <span id="updated-at">—</span></p>
+    </section>
+  </main>
+
+  <footer class="mx-auto container-narrow px-6 pb-10 text-xs text-slate-500">
+    Content adapted from the One Community analysis and supporting notes. :contentReference[oaicite:0]{index=0}
+  </footer>
+
+  <!-- React + Babel -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- Tabs logic + last-updated date -->
+  <script>
+    // Set "last updated" to today's date (or replace with a fixed string like '2025-09-23')
+    const UPDATED_AT = new Date().toISOString().slice(0,10);
+    const ua = document.getElementById('updated-at');
+    if (ua) ua.textContent = UPDATED_AT;
+
+    const tabButtons = document.querySelectorAll('#tabs .tab-btn');
+    const panels = {
+      overview: document.getElementById('panel-overview'),
+      net: document.getElementById('panel-net'),
+      cases: document.getElementById('panel-cases'),
+      policy: document.getElementById('panel-policy'),
+      tool: document.getElementById('panel-tool'),
+    };
+    function showTab(name){
+      Object.entries(panels).forEach(([k,el]) => el.classList.toggle('hidden', k!==name));
+      tabButtons.forEach(b => b.setAttribute('aria-selected', b.dataset.tab===name ? 'true':'false'));
+      if(name==='tool' && !window.__toolMounted){ mountTool(); window.__toolMounted=true; }
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+    tabButtons.forEach(b=>b.addEventListener('click',()=>showTab(b.dataset.tab)));
+    // default
+    showTab('overview');
+  </script>
+
+  <!-- Calculator (JSX run by Babel) -->
+  <script type="text/babel">
+    const {useMemo, useState} = React;
+
+    function App(){
+      const [inputs, setInputs] = useState({
+        pvSizeKw: 10,
+        annualProdKWh: 20075,
+        annualLoadKWh: 10950,
+        discountRatePct: 6,
+        analysisYears: 25,
+
+        panelCostPerW: 1.2,
+        infrastructureCostPerW: 0.15,   // NEW: infrastructure/site/trench/mount ($/W)
+        inverterCostPerKw: 150,
+        onmPctOfCapex: 1.0,
+
+        batteryKWh: 48,
+        batteryCostPerKWh: 350,
+        batteryLifeYears: 12,
+        offGridInverterAdderPerKw: 300,
+        generatorReservePerYear: 200,
+
+        buyRate: 0.20,
+        sellRate: 0.10,
+      });
+      const set = (k,v)=>setInputs(s=>({...s,[k]:v}));
+
+      const CRF = (r,n)=>{ if(r===0) return 1/n; const t=Math.pow(1+r,n); return (r*t)/(t-1); };
+
+      const results = useMemo(()=>{
+        const r = inputs.discountRatePct/100;
+        const crf = CRF(r, inputs.analysisYears);
+
+        // On-grid CAPEX includes Infrastructure $/W
+        const pvCostPerW = inputs.panelCostPerW + inputs.infrastructureCostPerW;       // NEW
+        const onGridCapex = inputs.pvSizeKw*1000*pvCostPerW + inputs.pvSizeKw*inputs.inverterCostPerKw; // UPDATED
+        const onGridAnnualOnM = (inputs.onmPctOfCapex/100)*onGridCapex;
+        const onGridAnnualized = onGridCapex*crf + onGridAnnualOnM;
+        const lcoeOnGrid = onGridAnnualized / Math.max(inputs.annualProdKWh,1);
+
+        const batteryCapex = inputs.batteryKWh*inputs.batteryCostPerKWh;
+        const batteryCRF = CRF(r, Math.max(1, Math.min(inputs.analysisYears, inputs.batteryLifeYears)));
+        const offGridCapexBase = onGridCapex + inputs.pvSizeKw*inputs.offGridInverterAdderPerKw;
+        const offGridAnnualOnM = (inputs.onmPctOfCapex/100)*offGridCapexBase + inputs.generatorReservePerYear;
+        const offGridAnnualized = offGridCapexBase*crf + batteryCapex*batteryCRF + offGridAnnualOnM;
+        const lcoeOffGrid = offGridAnnualized / Math.max(inputs.annualLoadKWh,1);
+        const ratio = lcoeOffGrid / Math.max(lcoeOnGrid,1e-9);
+
+        const exportKWh = Math.max(0, inputs.annualProdKWh - inputs.annualLoadKWh);
+        const importKWh = Math.max(0, inputs.annualLoadKWh - inputs.annualProdKWh);
+        const annualBill = importKWh*inputs.buyRate - exportKWh*inputs.sellRate;
+
+        let thresholdRatio = '—';
+        if(importKWh>0 && exportKWh>0){ thresholdRatio = (exportKWh / importKWh); }
+
+        return {
+          lcoeOnGrid, lcoeOffGrid, ratio,
+          onGridCapex,
+          offGridCapexBase: offGridCapexBase + batteryCapex,
+          exportKWh, importKWh, annualBill, thresholdRatio
+        };
+      }, [inputs]);
+
+     const Field = ({ label, suffix, step = 0.01, min = 0, value, onChange }) => (
+  <label
+    className="
+      grid items-center gap-2 py-1
+      [grid-template-columns:1fr_8rem_5rem]
+    "
+  >
+    <span className="text-sm text-slate-600">{label}</span>
+
+    <input
+      type="number"
+      step={step}
+      min={min}
+      value={Number.isFinite(value) ? value : ''}
+      onChange={(e) => onChange(parseFloat(e.target.value))}
+      className="h-9 w-full rounded-md border border-slate-300 px-2 text-right"
+    />
+
+    {suffix && (
+      <span className="text-xs text-slate-500 text-left">{suffix}</span>
+    )}
+  </label>
+);
+
+      const Card = ({title,children}) => (
+        <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          <h3 className="mb-3 text-lg font-semibold text-slate-800">{title}</h3>
+          {children}
+        </div>
+      );
+
+      const Stat = ({label,value,unit}) => (
+        <div className="flex flex-col rounded-xl bg-slate-50 p-3 text-center">
+          <div className="text-2xl font-semibold text-slate-800">
+            {isFinite(value) ? value.toLocaleString(undefined,{maximumFractionDigits:3}) : value}{unit}
+          </div>
+          <div className="text-xs text-slate-500">{label}</div>
+        </div>
+      );
+
+      return (
+        <div className="space-y-6">
+          <p className="text-sm text-slate-600">
+            Compare on-grid vs off-grid levelized cost of electricity (LCOE) and estimate net-metering outcomes.
+            Edit the inputs; results update instantly. Assumes annual averages for simplicity.
+          </p>
+
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+            <Card title="System & Energy">
+              <Field label="PV Size" suffix="kW" value={inputs.pvSizeKw} onChange={v=>set('pvSizeKw',v)} />
+              <Field label="Annual Production" suffix="kWh/yr" value={inputs.annualProdKWh} onChange={v=>set('annualProdKWh',v)} />
+              <Field label="Annual Load" suffix="kWh/yr" value={inputs.annualLoadKWh} onChange={v=>set('annualLoadKWh',v)} />
+              <Field label="Discount Rate" suffix="%" value={inputs.discountRatePct} onChange={v=>set('discountRatePct',v)} />
+              <Field label="Analysis Horizon" suffix="years" step={1} value={inputs.analysisYears} onChange={v=>set('analysisYears',v)} />
+            </Card>
+
+            <Card title="On-Grid Costs">
+              <Field label="Installed Cost (Panels+BOS+Install)" suffix="$ / W" value={inputs.panelCostPerW} onChange={v=>set('panelCostPerW',v)} />
+              <Field label="Infrastructure (site/trench/mount)" suffix="$ / W" value={inputs.infrastructureCostPerW} onChange={v=>set('infrastructureCostPerW',v)} />
+              <Field label="Inverter Reserve" suffix="$ / kW" value={inputs.inverterCostPerKw} onChange={v=>set('inverterCostPerKw',v)} />
+              <Field label="O&M" suffix="% of CAPEX / yr" value={inputs.onmPctOfCapex} onChange={v=>set('onmPctOfCapex',v)} />
+            </Card>
+
+            <Card title="Off-Grid Adders">
+              <Field label="Battery" suffix="kWh" value={inputs.batteryKWh} onChange={v=>set('batteryKWh',v)} />
+              <Field label="Battery Cost" suffix="$ / kWh" value={inputs.batteryCostPerKWh} onChange={v=>set('batteryCostPerKWh',v)} />
+              <Field label="Battery Life" suffix="years" step={1} value={inputs.batteryLifeYears} onChange={v=>set('batteryLifeYears',v)} />
+              <Field label="Off-Grid Controls Adder" suffix="$ / kW" value={inputs.offGridInverterAdderPerKw} onChange={v=>set('offGridInverterAdderPerKw',v)} />
+              <Field label="Generator Reserve" suffix="$ / yr" value={inputs.generatorReservePerYear} onChange={v=>set('generatorReservePerYear',v)} />
+            </Card>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+            <Card title="LCOE Results">
+              <div className="grid grid-cols-2 gap-3">
+                <Stat label="On-Grid LCOE" value={results.lcoeOnGrid} unit=" $/kWh" />
+                <Stat label="Off-Grid LCOE" value={results.lcoeOffGrid} unit=" $/kWh" />
+                <Stat label="Off-Grid / On-Grid" value={results.ratio} unit=" ×" />
+                <Stat label="On-Grid CAPEX" value={results.onGridCapex} unit=" $" />
+                <Stat label="Off-Grid CAPEX (incl. battery)" value={results.offGridCapexBase} unit=" $" />
+              </div>
+              <p className="mt-3 text-xs text-slate-500">
+                LCOE = (CAPEX × CRF + O&M + reserves) / Annual Energy. Battery is annualized with its own life.
+              </p>
+            </Card>
+
+            <Card title="Net-Metering">
+              <Field label="Buy Rate" suffix="$ / kWh" value={inputs.buyRate} onChange={v=>set('buyRate',v)} />
+              <Field label="Sell Rate" suffix="$ / kWh" value={inputs.sellRate} onChange={v=>set('sellRate',v)} />
+              <div className="grid grid-cols-2 gap-3 mt-2">
+                <Stat label="Annual Export" value={results.exportKWh} unit=" kWh" />
+                <Stat label="Annual Import" value={results.importKWh} unit=" kWh" />
+                <Stat label="Annual Bill (− credit)" value={results.annualBill} unit=" $/yr" />
+                <Stat label="Break-even Buy/Sell Ratio" value={results.thresholdRatio} unit=" ×" />
+              </div>
+              <p className="mt-3 text-xs text-slate-500">
+                Break-even when Import×Buy = Export×Sell ⇒ buy/sell = export/import (when both are non-zero).
+              </p>
+            </Card>
+
+            <Card title="How to read this">
+              <ul className="list-disc pl-5 text-sm text-slate-600 space-y-2">
+                <li>Start with defaults; adjust PV size, production, and costs to match your case.</li>
+                <li>Compare <strong>LCOE</strong> values; storage usually makes off-grid kWh pricier today.</li>
+                <li>Use Net-Metering to test buy/sell rates and see when the bill flips to a credit.</li>
+              </ul>
+            </Card>
+          </div>
+
+          <div className="text-xs text-slate-500">
+            This simple tool uses annual averages; for engineering design, use time-series simulators and utility-specific tariffs.
+          </div>
+        </div>
+      );
+    }
+
+    function mountTool(){
+      const root = ReactDOM.createRoot(document.getElementById('tool-root'));
+      root.render(<App />);
+    }
+  </script>
+</body>
+</html>
